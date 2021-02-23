@@ -1,2 +1,1 @@
-# E-Commerce-MERN
- 
+# E-Commerce-App-MERN-Stack-
