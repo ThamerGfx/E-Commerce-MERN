@@ -27,6 +27,7 @@ import SearchScreen from './screens/SearchScreen';
 import { listProductCategories } from './actions/productActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
+import MapScreen from './screens/MapScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -155,13 +156,13 @@ function App() {
             ) : errorCategories ? (
               <MessageBox variant="danger">{errorCategories}</MessageBox>
             ) : (
-              categories.map((cat) => (
-                <li key={cat}>
+              categories.map((c) => (
+                <li key={c}>
                   <Link
-                    to={`/search/category/${cat}`}
+                    to={`/search/category/${c}`}
                     onClick={() => setSidebarIsOpen(false)}
                   >
-                    {cat}
+                    {c}
                   </Link>
                 </li>
               ))
@@ -199,10 +200,16 @@ function App() {
             component={SearchScreen}
             exact
           ></Route>
+          <Route
+            path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order"
+            component={SearchScreen}
+            exact
+          ></Route>
           <PrivateRoute
             path="/profile"
             component={ProfileScreen}
           ></PrivateRoute>
+          <PrivateRoute path="/map" component={MapScreen}></PrivateRoute>
           <AdminRoute
             path="/productlist"
             component={ProductListScreen}
